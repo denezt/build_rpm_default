@@ -33,10 +33,19 @@ prereqs(){
 	}
 
 create_structure(){
-	mkdir -v -p /home/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+	mkdir -v -p /home/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS} && \
 	chown -R ${_user}:${_user} /home/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-	touch ${_user_dir}/.rpmmacros && chown -R
-	
+	echo  "%_topdir ${_user_dir}/rpmbuild" ${_user_dir}/.rpmmacros && \
+	chown -R ${_user}:${_user} ${_user_dir}/.rpmmacros
+
+	# OPTIONAL - Only for Demostration
+	_demo_dir=${_user_dir}/displaymsg-1.0
+	mkdir -v -p ${_demo_dir}
+	chown -R ${_user}:${_user} ${_demo_dir}
+	printf "#include <stdio.h>\n#include <unistd.h>\n" | tee ${_demo_dir}/displaymsg.c
+	printf "int main(){\nprintf(\"Program: Display Message!\\n\")\n}\n" | tee -a ${_demo_dir}/displaymsg.c
+ 	 
+		
 
 
 
