@@ -1,9 +1,9 @@
 # RPMBUILD Tools
 ## Default Scripts for Building Red Hat Packages using RPMBUILD
 
-PURPOSE:  *Automate the building of RPM Packages.*
-OS TYPE:   *Red Hat Linux*
-DIFFICULTY: *Advanced*
+PURPOSE:  *Automate the building of RPM Packages.* <br/>
+OS TYPE:   *Red Hat Linux*<br/>
+DIFFICULTY: *Advanced*<br/>
 
 ``` bash
 # Run once before starting build process. 
@@ -36,6 +36,6 @@ Now, you can start the _`rpmbuild`_ process.
 rpm -i -v /home/build/rpmbuild/RPMS/x86_64/displaymsg-1.0-1.x86_64.rpm
 ```
 Outputs:
-> Preparing packages...
-> displaymsg-1.0-1.x86_64
+> Preparing packages...<br/>
+> displaymsg-1.0-1.x86_64<br/>
 
