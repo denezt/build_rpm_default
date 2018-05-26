@@ -1,2 +1,6 @@
 
+# Remove local demo.
 flush_demo.sh
+
+# Auto-gen Password.
+password-*
