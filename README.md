@@ -33,6 +33,7 @@ Now, you can start the _`rpmbuild`_ process.
 
 ### Additional Commands:
 ``` bash
+# Installs the package/programs
 rpm -i -v /home/build/rpmbuild/RPMS/x86_64/displaymsg-1.0-1.x86_64.rpm
 ```
 Outputs:
