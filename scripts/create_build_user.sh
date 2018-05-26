@@ -88,9 +88,19 @@ main(){
 	fi
 	}
 
+help_menu(){
+	printf "\033[36mCreate Build User\033[0m\n"
+	printf "\033[1;2;33mStart Process\t\033[1;2;32m[ -s, -start, --start ]\033[0m\n"
+	printf "\033[1;2;33mHelp Menu\t\033[1;2;32m[ -h, -help, --help ]\033[0m\n"
+	}
 
 case $option in
-	-s|-start) main;;
+	-s|-start|--start) 
+	main
+	;;
+	-h|-help|--help)
+	help_menu
+	;;	
 	*) error "Missing or invalid parameter!";;
 esac
 
