@@ -26,6 +26,7 @@ prereqs(){
 		useradd $1
 		_pwgen="$(pwgen -1 -s -y 12)" 
 		# Add password
+		printf "${_pwgen}" > password-$(date '+%s')
 		echo "${_pwgen}" | passwd "$1" --stdin
 	else
 		error "Missing username!"
@@ -33,7 +34,7 @@ prereqs(){
 	}
 
 create_structure(){
-	mkdir -v -p /home/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS} && \
+	mkdir -v -p ${_user_dir}/{BUILD,RPMS,SOURCES,SPECS,SRPMS} && \
 	chown -R ${_user}:${_user} /home/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 	echo  "%_topdir ${_user_dir}/rpmbuild" ${_user_dir}/.rpmmacros && \
 	chown -R ${_user}:${_user} ${_user_dir}/.rpmmacros
@@ -42,13 +43,9 @@ create_structure(){
 	_demo_dir=${_user_dir}/displaymsg-1.0
 	mkdir -v -p ${_demo_dir}
 	chown -R ${_user}:${_user} ${_demo_dir}
-	printf "#include <stdio.h>\n#include <unistd.h>\n" | tee ${_demo_dir}/displaymsg.c
-	printf "int main(){\nprintf(\"Program: Display Message!\\n\")\n}\n" | tee -a ${_demo_dir}/displaymsg.c
+	printf "#include <stdio.h>\\n#include <unistd.h>\\n" | tee ${_demo_dir}/displaymsg.c
+	printf "int main(){\nprintf(\"Program: Display Message!\")\\n}\n" | tee -a ${_demo_dir}/displaymsg.c
  	 
-		
-
-
-
 	}
 
 
@@ -57,7 +54,7 @@ main(){
 	then
 		prereqs ${_user}
 		# Switch to user home
-		create_file_structure
+		create_structure
 	else
 		error "No home build directory was found!"
 	fi
