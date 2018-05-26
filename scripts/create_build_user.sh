@@ -66,7 +66,7 @@ create_structure(){
 	
 	cp -a -v ../sources/Makefile ${_demo_dir}/Makefile
 	assign_owner "${_demo_dir}/Makefile" 	 
-	
+displaymsg.spec	
 	tar -czvf ${_rpmbuild}/SOURCES/displaymsg.tar.gz ../sources/
 
 	}
