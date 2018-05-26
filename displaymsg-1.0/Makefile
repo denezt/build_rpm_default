@@ -8,4 +8,4 @@ compile: main.c
 
 install: compile
 	mkdir -p ${RPM_BUILD_ROOT}/usr/bin
-	cp -v -a $(PRG_NAME) ${RPM_BUILD_ROOT}/usr/bin
+	cp -v $(PRG_NAME) ${RPM_BUILD_ROOT}/usr/bin

@@ -4,7 +4,7 @@
 #
 
 option=$1
-_user="tmp_user"
+_user="build"
 _user_dir="/home/${_user}"
 
 error(){
@@ -34,7 +34,7 @@ prereqs(){
 	then
 		# Create user and home dir
 		useradd -m $1
-		_pwgen="$(pwgen -1 -s -y 12)" 
+		_pwgen="$(pwgen -1 -s 12)" 
 		# Add password
 		printf "${_pwgen}" > password-$(date '+%s')
 		echo "${_pwgen}" | passwd "$1" --stdin
@@ -44,16 +44,20 @@ prereqs(){
 	}
 
 create_structure(){
-	# Location of RPMBUILD 
+	# Location of directories 
 	_rpmbuild="${_user_dir}/rpmbuild"
+	_srcdir="../displaymsg-1.0"
 
+	# Create RPMBUILD Structure
 	mkdir -v -p ${_rpmbuild}/{BUILD,RPMS,SOURCES,SPECS,SRPMS} || exit 2
+	assign_owner "${_rpmbuild}"
 	assign_owner "${_rpmbuild}/BUILD" 
 	assign_owner "${_rpmbuild}/RPMS"
 	assign_owner "${_rpmbuild}/SOURCES"
 	assign_owner "${_rpmbuild}/SPECS"
 	assign_owner "${_rpmbuild}/SRPMS"
 	
+	# Write Macros
 	echo  "%_topdir ${_rpmbuild}" | tee ${_user_dir}/.rpmmacros && \
 	assign_owner "${_user_dir}/.rpmmacros"
 
@@ -61,14 +65,15 @@ create_structure(){
 	_demo_dir=${_user_dir}/displaymsg-1.0
 	mkdir -v -p ${_demo_dir}
 	assign_owner ${_demo_dir}
-	cp -a -v ../sources/main.c "${_demo_dir}/main.c"
-	assign_owner "${_demo_dir}/main.c"
-	
-	cp -a -v ../sources/Makefile ${_demo_dir}/Makefile
-	assign_owner "${_demo_dir}/Makefile" 	 
-displaymsg.spec	
-	tar -czvf ${_rpmbuild}/SOURCES/displaymsg.tar.gz ../sources/
 
+	for _src in "main.c" "displaymsg.spec" "Makefile"
+	do
+		cp -v ${_srcdir}/${_src} "${_demo_dir}/${_src}"
+		assign_owner "${_demo_dir}/${_src}"
+	done
+	
+	tar -czvf ${_rpmbuild}/SOURCES/displaymsg.tar.gz ${_srcdir}/*
+	assign_owner "${_rpmbuild}/SOURCES/displaymsg.tar.gz"
 	}
 
 main(){

@@ -16,7 +16,6 @@ A simple demo to build a package - displays the program name.
 Authors:
 --------
 	Richard Jackson
-
 %global debug_package %{nil}
 %prep
 %setup
@@ -27,5 +26,5 @@ make
 make install
 
 %files
-%detattr(4755,root,root,0755)
+%defattr(4755,root,root,0755)
 /usr/bin/%{name}
