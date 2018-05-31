@@ -17,9 +17,9 @@ ubuntu(){
 }
 
 help_menu(){
-  printf "Install Build Deps"
-  printf "Redhat distro\t[ -redhat, -fedora ]\n"
-  printf "Ubuntu distro\t[ -ubuntu ]\n"
+  printf "\033[1;2;36mInstall Build Deps\033[0m\n"
+  printf "\033[1;2;35mRedhat distro\t\033[1;2;32m[ -redhat, -fedora ]\033[0m\n"
+  printf "\033[1;2;35mUbuntu distro\t\033[1;2;32m[ -ubuntu ]\033[0m\n"
 }
 
 case ${_distro} in
