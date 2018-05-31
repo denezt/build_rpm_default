@@ -25,5 +25,6 @@ help_menu(){
 case ${_distro} in
   -redhat|-fedora) red_hat;;
   -ubuntu) ubuntu;;
-  *) printf "Missing or invalid parameter was entered!\n";;
+  -h|-help|--help) help_menu;;
+  *) printf "Missing or invalid parameter was entered!\nTry '-h' to view options.\n";;
 esac
