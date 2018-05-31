@@ -12,7 +12,7 @@ ubuntu(){
   printf "Checking for required linked resources...\n"
   test -e "/lib/libc.so.6" || ln -s /lib/i386-linux-gnu/libc.so.6 /lib/
   printf "Done!\n"
-  apt-get -y install passgen
+  apt-get -y install pwgen
   apt-get -y install alien
 }
 
