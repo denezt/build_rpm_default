@@ -2,12 +2,7 @@ node {
     try {
         stage('Checkout') {
               // To be added to shared libraries
-              //
-              checkout scm
-              //checkout changelog: false, poll: false, \
-              //scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: \
-              //   [[$class: 'ScmName', name: 'gradle']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Database', \
-              //   url: 'https://github.com/spineo/groovy-gradle-project.git']]]
+              checkout scm            
         }
         
         stage('Clean') {
