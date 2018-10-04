@@ -11,6 +11,7 @@ node {
         
         stage('Build') {
            echo 'Build'
+           sh "/scripts/create_build_user.sh -start"
         }
 
         stage('Testing') {
