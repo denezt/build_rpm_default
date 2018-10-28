@@ -11,6 +11,7 @@ node {
         
         stage('Build') {
            echo 'Build'
+           sh "./scripts/install_prereqs.sh.sh -ubuntu"
            sh "./scripts/create_build_user.sh -start"
         }
 
