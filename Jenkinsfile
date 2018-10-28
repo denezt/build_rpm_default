@@ -7,6 +7,7 @@ node {
         
         stage('Clean') {
             sh "ls -l"
+            sh "ls -l scripts"
         }
         
         stage('Build') {
