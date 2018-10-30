@@ -12,7 +12,7 @@ node {
         
         stage('Build') {
            echo 'Build'    
-           sh "./scripts/install_prereqs.sh"
+           sh "./scripts/install_prereqs.sh -ubuntu"
         }
 
         stage('Testing') {
