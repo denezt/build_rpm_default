@@ -1,8 +1,12 @@
 node {
     try {
+        stage('Prereqs') {
+              // To be added to shared libraries
+              sh "whoami"
+        }
         stage('Checkout') {
               // To be added to shared libraries
-              checkout scm            
+              checkout scm           
         }
         
         stage('Clean') {
