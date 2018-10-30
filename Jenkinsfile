@@ -11,7 +11,8 @@ node {
         }
         
         stage('Build') {
-           echo 'Build'            
+           echo 'Build'    
+           sh "./scripts/install_prereqs.sh"
         }
 
         stage('Testing') {
