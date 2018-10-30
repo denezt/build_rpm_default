@@ -16,7 +16,7 @@ node {
         
         stage('Build') {
            echo 'Build'    
-           sh "./scripts/install_prereqs.sh -ubuntu"
+           sh "sudo ./scripts/install_prereqs.sh -ubuntu"
         }
 
         stage('Testing') {
