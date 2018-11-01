@@ -47,7 +47,7 @@ prereqs(){
 create_structure(){
 	# Location of directories 
 	_rpmbuild="${_user_dir}/rpmbuild"
-	_srcdir="../displaymsg-1.0"
+	_srcdir="displaymsg-1.0"
 
 	# Create RPMBUILD Structure
 	mkdir -v -p ${_rpmbuild}/{BUILD,RPMS,SOURCES,SPECS,SRPMS} || exit 2
