@@ -4,6 +4,7 @@
 if [ -z "${1}" ];
 then
 	_distro="-$(lsb_release -i | tr '[:upper:]' '[:lower:]' | cut -d: -f2 | tr -d '[:space:]')"
+	printf "Auto-Dectect OS: [ ${_distro} ]\n"
 else
 	_distro="${1}"
 fi

@@ -19,7 +19,8 @@ node {
         stage('Build') {
 		echo "==================[ BUILD RPM ]=================="
 		sh "sudo ./scripts/create_build_user.sh --build"
-		sh "sudo ./scripts/install_prereqs.sh -ubuntu"
+		sh "sudo ./scripts/install_prereqs.sh"
+		sh "cd /home/build/displaymsg-1.0 && sudo rpmbuild -ba displaymsg.spec"
         }
 
         stage('Testing') {
