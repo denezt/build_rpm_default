@@ -99,20 +99,6 @@ create_structure(){
 	assign_owner "${_rpmbuild}/SOURCES/displaymsg.tar.gz"
 	}
 
-main(){
-	# Create User
-	prereqs ${_user}
-	if [ -d "/home/${_user}" ];
-	then
-		# Remove older session files.
-		destroy_structure
-		# Switch to user home.
-		create_structure
-	else
-		error "No home build directory was found!"
-	fi
-	}
-
 help_menu(){
 	printf "\033[36mCreate Build User\033[0m\n"
 	printf "\033[1;2;33mStart Process\t\033[1;2;32m[ -s, -start, --start ]\033[0m\n"
@@ -120,12 +106,26 @@ help_menu(){
 	}
 
 case $option in
-	-s|-start|--start)
-	main
+	-c|-clean|--clean)
+		if [ -d "/home/${_user}" ];
+		then
+			# Remove older session files.
+			destroy_structure
+		else
+			error "No home build directory was found!"
+		fi
 	;;
-	-h|-help|--help)
-	help_menu
+	-b|-build|--build)
+		prereqs ${_user}
+		if [ -d "/home/${_user}" ];
+		then
+			# Switch to user home.
+			create_structure
+		else
+			error "No home build directory was found!"
+		fi
 	;;
+	-h|-help|--help) help_menu;;
 	*) error "Missing or invalid parameter!";;
 esac
 

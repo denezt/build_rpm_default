@@ -10,16 +10,6 @@ red_hat(){
 
 ubuntu(){
   printf "Checking for required linked resources...\n"
-  if [ ! -z "$( ls /lib/i386-linux-gnu/libc.so.6)" ];
-  then
-	echo "Found: '/lib/i386-linux-gnu/libc.so.6'"
-  fi
-  if [ -z "$(ls /lib/libc.so.6)" ];
-  then
-  	ln -s /lib/i386-linux-gnu/libc.so.6 /lib/
-  else
-   	printf "No need to create '/lib/libc.so.6' already exists."
-  fi
   printf "Done!\n"
   apt-get -y install pwgen
   apt-get -y install alien

@@ -1,39 +1,42 @@
 node {
-    try {
-        stage('Prereqs') {
-              // To be added to shared libraries
-              sh "whoami"
+	try {
+		stage('Prereqs') {
+		// To be added to shared libraries" 
+		echo "==================[ PREQS ]=================="
+		sh "echo \"Logged in as user: $USER\""
         }
         stage('Checkout') {
-              // To be added to shared libraries
-              checkout scm           
-        }
+		// To be added to shared libraries
+		echo "==================[ CHECKOUT - SOURCE CODE ]=================="
+		checkout scm           
+	}
         
         stage('Clean') {
-            sh "ls -l"
-            sh "ls -l scripts > test.file"
+		echo "==================[ CLEAN SESSIONS ]=================="
+		sh "sudo ./scripts/create_build_user.sh --clean"
         }
         
         stage('Build') {
-           echo 'Build'    
-           sh "sudo ./scripts/create_build_user.sh -start"
-           sh "sudo ./scripts/install_prereqs.sh -ubuntu"
+		echo "==================[ BUILD RPM ]=================="
+		sh "sudo ./scripts/create_build_user.sh --build"
+		sh "sudo ./scripts/install_prereqs.sh -ubuntu"
         }
 
         stage('Testing') {
-            echo 'Testing'
+		echo 'Testing'
         }
 
         stage('Staging') {
-            echo 'Deploy Stage'
+		echo 'Deploy Stage'
         }
+
         stage('Deploy') {
-            echo 'Deploy Stage'
+		echo 'Deploy Stage'
         }
   } catch (e) {
-    currentBuild.result = "FAILED"
-    throw e
+	currentBuild.result = "FAILED"
+	throw e
   } finally {
-    echo 'Success'
+	echo 'Success'
   }
 }
