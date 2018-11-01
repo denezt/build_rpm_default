@@ -1,5 +1,4 @@
 node {
-
 	try {
 		stage('Prereqs') {
 		// To be added to shared libraries" 
@@ -10,6 +9,7 @@ node {
 		// To be added to shared libraries
 		echo "==================[ CHECKOUT - SOURCE CODE ]=================="
 		checkout scm           
+		
 	}
         
         stage('Clean') {
@@ -27,7 +27,7 @@ node {
 		echo "==================[ BUILD RPM ]=================="
 		sh "pwd"
 		sh "ls -lsaR scripts"
-		// sh "sudo ./scripts/build_rpm.sh"
+		sh "sudo ./scripts/build_rpm.sh"
         }
 
         stage('Testing') {
