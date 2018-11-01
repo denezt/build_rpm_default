@@ -35,10 +35,10 @@ prereqs(){
 		# Create user and home dir
 		useradd -m $1
 		groupadd -f $1
-		_pwgen="$(pwgen -1 -s 12)" 
+		# _pwgen="$(pwgen -1 -s 12)" 
 		# Add password
-		printf "${_pwgen}" > password-$(date '+%s')
-		echo "${_pwgen}" | passwd "$1" --stdin
+		# printf "${_pwgen}" > password-$(date '+%s')
+		# echo "${_pwgen}" | passwd "$1" --stdin
 	else
 		error "Missing username!"
 	fi
