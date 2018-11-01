@@ -1,4 +1,5 @@
 node {
+
 	try {
 		stage('Prereqs') {
 		// To be added to shared libraries" 
@@ -20,7 +21,8 @@ node {
 		echo "==================[ BUILD RPM ]=================="
 		sh "sudo ./scripts/create_build_user.sh --build"
 		sh "sudo ./scripts/install_prereqs.sh"
-		sh "cd /home/build/displaymsg-1.0; sudo rpmbuild -ba displaymsg.spec"
+		echo "Executing RPMBUILD..."
+		sh "cd /home/build/displaymsg-1.0; su build; sudo rpmbuild -ba displaymsg.spec"
         }
 
         stage('Testing') {
