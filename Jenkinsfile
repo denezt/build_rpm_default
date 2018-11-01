@@ -17,16 +17,22 @@ node {
 		sh "sudo ./scripts/create_build_user.sh --clean"
         }
         
-        stage('Build') {
-		echo "==================[ BUILD RPM ]=================="
+        stage('Create User') {
+		echo "==================[ CREATE SESSION USER ]=================="
 		sh "sudo ./scripts/create_build_user.sh --build"
 		sh "sudo ./scripts/install_prereqs.sh"
-		echo "Executing RPMBUILD..."
-		sh "sudo ./scripts/build_rpm.sh"
+        }
+
+        stage('Build') {
+		echo "==================[ BUILD RPM ]=================="
+		sh "pwd"
+		sh "ls -lsaR scripts"
+		// sh "sudo ./scripts/build_rpm.sh"
         }
 
         stage('Testing') {
 		echo 'Testing'
+		sh "pwd"
 		sh "sudo ./scripts/test_rpm.sh"		
         }
 
