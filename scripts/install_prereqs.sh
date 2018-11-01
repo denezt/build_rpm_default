@@ -1,6 +1,12 @@
 #!/bin/bash
 
-_distro="$1"
+
+if [ -z "${1}" ];
+then
+	_distro="-$(lsb_release -i | tr '[:upper:]' '[:lower:]' | cut -d: -f2 | tr -d '[:space:]')"
+else
+	_distro="${1}"
+fi
 
 # Install Prereqs for scripts.
 red_hat(){
