@@ -54,16 +54,22 @@ prereqs(){
 
 destroy_structure(){
 	_rpmbuild="${_user_dir}/rpmbuild"
-	_demo_dir=${_user_dir}/displaymsg-1.0
+	_demo_dir="${_user_dir}/displaymsg-1.0"
+	_session_file="${_user_dir}/session_data.json"
 	if [ -d "${_rpmbuild}" ];
 	then
 		printf "Removing, ${rpm_build} session files\n"
-		rm -rfv ${_rpmbuild}
+		rm -rfv "${_rpmbuild}"
 	fi
 	if [ -d "${_demo_dir}" ];
 	then
 		printf "Removing, ${demo_dir} session files\n"
-		rm -rfv ${_demo_dir}
+		rm -rfv "${_demo_dir}"
+	fi
+	if [ -f "${_session_file}" ];
+	then
+		printf "Removing, ${_session_file} older session data\n"
+		rm -fv "${_session_file}"
 	fi
 	}
 

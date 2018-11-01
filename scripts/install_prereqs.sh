@@ -20,6 +20,7 @@ ubuntu(){
   printf "Done!\n"
   apt-get -y install pwgen
   apt-get -y install alien
+  apt-get -y install jq
 }
 
 help_menu(){
