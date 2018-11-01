@@ -26,13 +26,13 @@ node {
 		echo "==================[ BUILD RPM ]=================="
 		sh "pwd"
 		sh "ls -lsaR scripts"
-		sh "sudo source scripts/build_rpm.sh"
+		sh "sudo scripts/build_rpm.sh"
         }
 
         stage('Testing') {
 		echo 'Testing'
 		sh "pwd"
-		sh "sudo source scripts/test_rpm.sh"		
+		sh "sudo scripts/test_rpm.sh"		
         }
 
         stage('Deploy') {
