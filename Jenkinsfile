@@ -16,8 +16,8 @@ node {
         
         stage('Build') {
            echo 'Build'    
-           sh 'sudo ./scripts/create_build_user.sh -start'
-           sh 'sudo ./scripts/install_prereqs.sh -ubuntu
+           sh "sudo ./scripts/create_build_user.sh -start"
+           sh "sudo ./scripts/install_prereqs.sh -ubuntu"
         }
 
         stage('Testing') {
