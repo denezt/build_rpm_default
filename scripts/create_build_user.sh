@@ -4,7 +4,7 @@
 #
 
 option=$1
-_user="build"
+_user="jenkins"
 _user_dir="/home/${_user}"
 
 error(){
@@ -32,16 +32,17 @@ assign_owner(){
 prereqs(){
 	if [ ! -z "${1}" ];
 	then
+		echo "No Prereqs"
 		# Remove user, group and home
-		deluser --remove-home "${1}"
+		# deluser --remove-home "${1}"
 		# Create user and home dir
-		if [ ! -z "$(grep ${1} /etc/shadow)" ];
-		then
-			printf "User Found.\n"
-		else
-			useradd -m $1
-			groupadd -f $1
-		fi
+		# if [ ! -z "$(grep ${1} /etc/shadow)" ];
+		# then
+		#	printf "User Found.\n"
+		# else
+		#	useradd -m $1
+		#	groupadd -f $1
+		# fi
 		# _pwgen="$(pwgen -1 -s 12)"
 		# Add password
 		# printf "${_pwgen}" > password-$(date '+%s')

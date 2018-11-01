@@ -22,7 +22,7 @@ node {
 		sh "sudo ./scripts/create_build_user.sh --build"
 		sh "sudo ./scripts/install_prereqs.sh"
 		echo "Executing RPMBUILD..."
-		sh "su build; cd /home/build/displaymsg-1.0; sudo rpmbuild -ba displaymsg.spec"
+		sh "cd /home/jenkins/displaymsg-1.0; sudo rpmbuild -ba displaymsg.spec"
         }
 
         stage('Testing') {
