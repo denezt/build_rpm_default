@@ -1,5 +1,4 @@
 node {
-
 	try {
 		stage('Prereqs') {
 		// To be added to shared libraries" 
@@ -27,13 +26,13 @@ node {
 		echo "==================[ BUILD RPM ]=================="
 		sh "pwd"
 		sh "ls -lsaR scripts"
-		// sh "sudo ./scripts/build_rpm.sh"
+		sh "sudo source scripts/build_rpm.sh"
         }
 
         stage('Testing') {
 		echo 'Testing'
 		sh "pwd"
-		sh "sudo ./scripts/test_rpm.sh"		
+		sh "sudo source scripts/test_rpm.sh"		
         }
 
         stage('Deploy') {
