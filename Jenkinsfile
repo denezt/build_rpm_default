@@ -22,19 +22,17 @@ node {
 		sh "sudo ./scripts/create_build_user.sh --build"
 		sh "sudo ./scripts/install_prereqs.sh"
 		echo "Executing RPMBUILD..."
-		sh "cd /home/jenkins/displaymsg-1.0; sudo rpmbuild -ba displaymsg.spec"
+		sh "sudo ./scripts/build_rpm.sh"
         }
 
         stage('Testing') {
 		echo 'Testing'
-        }
-
-        stage('Staging') {
-		echo 'Deploy Stage'
+		sh "sudo ./scripts/test_rpm.sh"		
         }
 
         stage('Deploy') {
 		echo 'Deploy Stage'
+		sh "./scripts/deploy_to_location.sh"
         }
   } catch (e) {
 	currentBuild.result = "FAILED"
