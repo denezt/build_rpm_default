@@ -33,11 +33,12 @@ node {
         stage('Testing') {
 		echo 'Testing'
 		sh "pwd"
-		sh "sudo ./scripts/test_rpm.sh"		
+		sh "sudo scripts/test_rpm.sh"		
         }
 
         stage('Deploy') {
 		echo 'Deploy Stage'
+		sh "pwd"
 		sh "./scripts/deploy_to_location.sh"
         }
   } catch (e) {
