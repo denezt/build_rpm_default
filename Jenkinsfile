@@ -32,20 +32,20 @@ node {
 		echo "==================[ BUILD RPM ]=================="
 		sh "pwd"
 		sh "ls -lsaR scripts"
-		sh "cat ./scripts/build_rpm.sh | bash -s"
+		sh "sudo ./scripts/build_rpm.sh"
         }
 
         stage('Testing') {
 		echo "==================[ TESTING PACKAGE ]=================="
 		sh "pwd"
-		sh "cat ./scripts/test_rpm.sh | bash -s"
+		sh "sudo ./scripts/test_rpm.sh"
         }
 
 	if (!"${JOB_NAME}".endsWith("_check")) {
 		stage('Deploy') {
 			echo "==================[ DEPLOYING ]=================="
 			sh "pwd"
-			sh "cat ./scripts/deploy_to_location.sh | bash -s" 
+			sh "sudo ./scripts/deploy_to_location.sh" 
 		}
 	}
   } catch (e) {
