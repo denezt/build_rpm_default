@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [ -z "${1}" ];
 then
 	_distro="-$(lsb_release -i | tr '[:upper:]' '[:lower:]' | cut -d: -f2 | tr -d '[:space:]')"
