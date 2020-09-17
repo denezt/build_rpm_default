@@ -19,7 +19,7 @@ node {
       
 	stage('Clean') {
 		echo "==================[ CLEAN SESSIONS ]=================="
-		sh "sudo ./scripts/create_build_user.sh --clean"
+		sh "sudo -S ./scripts/create_build_user.sh --clean"
         }
  
         stage('Create User') {
