@@ -1,18 +1,11 @@
-#!/bin/bash
+#!/bin/bash -x
 #
 #
 #
 
-sessionFile="/home/jenkins/session_data.json"
-pushd .
-cd /home/jenkins/displaymsg-1.0
-_rpm_name="$( sudo rpmbuild -ba displaymsg.spec | egrep 'Wrote:' | grep '/home/jenkins/rpmbuild/RPMS' | cut -d: -f2 | tr -d '[:space:]' )"
+_dir="/home/jenkins/displaymsg-1.0"
+# _rpm_name="$(sudo rpmbuild -ba ${_dir}/displaymsg.spec | egrep 'Wrote:' | grep '/home/jenkins/rpmbuild/RPMS' | cut -d: -f2 | tr -d '[:space:]')"
+# rpmbuild -ba ${_dir}/displaymsg.spec | egrep 'Wrote:' | grep '/home/jenkins/rpmbuild/RPMS' | cut -d: -f2 | tr -d '[:space:]'
 
-# save to session_data
-if [ ! -z "${_rpm_name}" ];
-then
-	[ -f "${sessionFile}" ] && printf ',\n' | tee -a "${sessionFile}"
-	echo "{\"rpm_name\":\"${_rpm_name}\"}" | tee -a "${sessionFile}"
-fi
-popd
-
+ls -lsa
+rpmbuild --define "_topdir /home/jenkins/rpmbuild" -ba ${_dir}/displaymsg.spec #| egrep 'Wrote:' | grep '/home/jenkins/rpmbuild/RPMS' | cut -d: -f2 | tr -d '[:space:]'

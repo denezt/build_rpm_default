@@ -5,7 +5,7 @@
 
 option=$1
 _user="jenkins"
-_user_dir="/home/${_user}"
+_user_dir="/home/jenkins"
 
 error(){
 	if [ ! -z "$1" ];
@@ -14,7 +14,7 @@ error(){
 	else
 		output="Unknown error occurred! (create_build_user)"
 	fi
-	printf "\033[1;2;36mError:\033[0m\t\033[31m$output\033[0m\n"
+	printf "\033[1;2;36mError:\033[0m\t\033[31m${output}\033[0m\n"
 	}
 
 assign_owner(){
@@ -54,8 +54,7 @@ prereqs(){
 
 destroy_structure(){
 	_rpmbuild="${_user_dir}/rpmbuild"
-	_demo_dir="${_user_dir}/displaymsg-1.0"
-	_session_file="${_user_dir}/session_data.json"
+	_demo_dir="${_user_dir}/displaymsg-1.0"	
 	if [ -d "${_rpmbuild}" ];
 	then
 		printf "Removing, ${rpm_build} session files\n"
@@ -65,11 +64,6 @@ destroy_structure(){
 	then
 		printf "Removing, ${demo_dir} session files\n"
 		rm -rfv "${_demo_dir}"
-	fi
-	if [ -f "${_session_file}" ];
-	then
-		printf "Removing, ${_session_file} older session data\n"
-		rm -fv "${_session_file}"
 	fi
 	}
 
@@ -135,7 +129,3 @@ case $option in
 	-h|-help|--help) help_menu;;
 	*) error "Missing or invalid parameter!";;
 esac
-
-
-
-

@@ -5,53 +5,54 @@ node {
 
 	try {
 		stage('Prereqs') {
-		// To be added to shared libraries" 
-		echo "==================[ PREQS ]=================="
-		sh "echo \"Logged in as user: $USER\""
-        }
-
-        stage('Checkout') {
-		// To be added to shared libraries
-		echo "==================[ CHECKOUT - SOURCE CODE ]=================="
-		checkout scm           
-		
-	}     
-      
-	stage('Clean') {
-		echo "==================[ CLEAN SESSIONS ]=================="
-		sh "sudo ./scripts/create_build_user.sh --clean"
-        }
- 
-        stage('Create User') {
-		echo "==================[ CREATE SESSION USER ]=================="
-		sh "sudo ./scripts/create_build_user.sh --build"
-		sh "sudo ./scripts/install_prereqs.sh"
-        }
-
-        stage('Build') {
-		echo "==================[ BUILD RPM ]=================="
-		sh "pwd"
-		sh "ls -lsaR scripts"
-		sh "sudo ./scripts/build_rpm.sh"
-        }
-
-        stage('Testing') {
-		echo "==================[ TESTING PACKAGE ]=================="
-		sh "pwd"
-		sh "sudo ./scripts/test_rpm.sh"
-        }
-
-	if (!"${JOB_NAME}".endsWith("_check")) {
-		stage('Deploy') {
-			echo "==================[ DEPLOYING ]=================="
-			sh "pwd"
-			sh "sudo ./scripts/deploy_to_location.sh" 
+			// To be added to shared libraries"
+			echo "==================[ PREQS ]=================="
+			sh "echo \"Logged in as user: $USER\""
 		}
-	}
-  } catch (e) {
-	currentBuild.result = "FAILED"
-	throw e
-  } finally {
-	echo 'Success'
-  }
+
+		stage('Checkout') {
+			// To be added to shared libraries
+			echo "==================[ CHECKOUT - SOURCE CODE ]=================="			
+			checkout scm
+			sh "pwd"
+			sh "sudo chmod -R 777 scripts"
+			sh "ls -lsaR scripts"
+		}
+
+		stage('Clean') {
+			echo "==================[ CLEAN SESSIONS ]=================="
+			sh "sudo ./scripts/create_build_user.sh --clean"
+		}
+
+		stage('Create User') {
+			echo "==================[ CREATE SESSION USER ]=================="
+			sh "sudo ./scripts/create_build_user.sh --build"
+			sh "sudo ./scripts/install_prereqs.sh"
+		}
+
+		stage('Build') {
+			echo "==================[ BUILD RPM ]=================="
+			sh "pwd"
+			sh "sudo ./scripts/build_rpm.sh"
+		}
+
+		stage('Testing') {
+			echo "==================[ TESTING PACKAGE ]=================="
+			sh "pwd"
+			// sh "sudo ./scripts/test_rpm.sh"
+		}
+
+			if (!"${JOB_NAME}".endsWith("_check")) {
+				stage('Deploy') {
+					echo "==================[ DEPLOYING ]=================="
+					sh "pwd"
+					// sh "sudo ./scripts/deploy_to_location.sh"
+				}
+			}
+		} catch (e) {
+			currentBuild.result = "FAILED"
+			throw e
+		} finally {
+				echo 'Success'
+		}
 }

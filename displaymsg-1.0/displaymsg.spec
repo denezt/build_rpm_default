@@ -10,20 +10,26 @@ Group:		Automation-Tools
 License:	GPLv2
 Url:		https://www.garagebarge.com
 Source:		%{name}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-build
+BuildRoot:	%{_tmpdir}/%{name}-%{version}-%{build}
+
 %description
 A simple demo to build a package - displays the program name.
+
 Authors:
 --------
 	Richard Jackson
+
 %global debug_package %{nil}
 %prep
-%setup
+%setup -q /home/jenkins/%{?name}-%{?version}
 %build
-make
+make all
 
 %install
-make install
+make PREFIX=/usr DESTDIR=%{?buildroot} install
+
+%clean
+rm -rf %{buildroot}
 
 %files
 %defattr(4755,root,root,0755)

@@ -20,6 +20,7 @@ ubuntu(){
   apt-get -y install pwgen
   apt-get -y install alien
   apt-get -y install jq
+	apt-get -y install python3
 }
 
 help_menu(){
