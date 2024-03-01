@@ -8,6 +8,7 @@ node {
 			// To be added to shared libraries"
 			echo "==================[ PREQS ]=================="
 			sh "echo \"Logged in as user: $USER\""
+			sh "sudo ./scripts/install_prereqs.sh"			
 		}
 
 		stage('Checkout') {
@@ -27,7 +28,6 @@ node {
 		stage('Create User') {
 			echo "==================[ CREATE SESSION USER ]=================="
 			sh "sudo ./scripts/create_build_user.sh --build"
-			sh "sudo ./scripts/install_prereqs.sh"
 		}
 
 		stage('Build') {
