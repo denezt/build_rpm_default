@@ -8,12 +8,12 @@ node {
 			// To be added to shared libraries"
 			echo "==================[ PREQS ]=================="
 			sh "echo \"Logged in as user: $USER\""
-			sh "sudo ./scripts/install_prereqs.sh"			
+			sh "sudo ./scripts/install_prereqs.sh"
 		}
 
 		stage('Checkout') {
 			// To be added to shared libraries
-			echo "==================[ CHECKOUT - SOURCE CODE ]=================="			
+			echo "==================[ CHECKOUT - SOURCE CODE ]=================="
 			checkout scm
 			sh "pwd"
 			sh "sudo chmod -R 777 scripts"
