@@ -46,7 +46,7 @@ node {
 				stage('Deploy') {
 					echo "==================[ DEPLOYING ]=================="
 					sh "pwd"
-					// sh "sudo ./scripts/deploy_to_location.sh"
+					sh "sudo ./scripts/deploy_to_location.sh"
 				}
 			}
 		} catch (e) {
