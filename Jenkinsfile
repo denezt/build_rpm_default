@@ -7,13 +7,14 @@ node {
 
 		stage('Checkout') {
 			// To be added to shared libraries
+			sh "sudo apt-get install git -y"
 			echo "==================[ CHECKOUT - SOURCE CODE ]=================="
 			checkout scm
 			sh "pwd"
 			sh "sudo chmod -R 777 scripts"
 			sh "ls -lsaR scripts"
 		}
-		
+
 		stage('Prereqs') {
 			// To be added to shared libraries"
 			echo "==================[ PREQS ]=================="
