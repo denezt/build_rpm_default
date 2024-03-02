@@ -29,7 +29,7 @@ node {
 
 		stage('Create User') {
 			echo "==================[ CREATE SESSION USER ]=================="
-			sh "sudo ./scripts/create_build_user.sh --build"
+			sh "sudo ./scripts/create_build_user.sh --build ${JENKINS_PASSWORD}"
 		}
 
 		stage('Build') {

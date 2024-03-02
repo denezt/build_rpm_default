@@ -5,6 +5,7 @@
 
 option=$1
 _user="jenkins"
+_user_password="${2}"
 _user_dir="/home/jenkins"
 
 error(){
@@ -29,28 +30,6 @@ assign_owner(){
 	fi
 	}
 
-prereqs(){
-	if [ ! -z "${1}" ];
-	then
-		echo "No Prereqs"
-		# Remove user, group and home
-		# deluser --remove-home "${1}"
-		# Create user and home dir
-		# if [ ! -z "$(grep ${1} /etc/shadow)" ];
-		# then
-		#	printf "User Found.\n"
-		# else
-		#	useradd -m $1
-		#	groupadd -f $1
-		# fi
-		# _pwgen="$(pwgen -1 -s 12)"
-		# Add password
-		# printf "${_pwgen}" > password-$(date '+%s')
-		# echo "${_pwgen}" | passwd "$1" --stdin
-	else
-		error "Missing username!"
-	fi
-	}
 
 destroy_structure(){
 	_rpmbuild="${_user_dir}/rpmbuild"
@@ -117,7 +96,6 @@ case $option in
 		fi
 	;;
 	-b|-build|--build)
-		prereqs ${_user}
 		if [ -d "/home/${_user}" ];
 		then
 			# Switch to user home.
