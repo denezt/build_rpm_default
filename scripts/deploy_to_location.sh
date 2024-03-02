@@ -10,8 +10,9 @@ else
 	echo "Directory $extdir already exists"
 fi
 
-echo "RPM NAME: $(jq .rpm_name /home/jenkins/session_data.json)"
-_rpmpkg="$(jq .rpm_name /home/jenkins/session_data.json | tr -d '\"')"
+# echo "RPM NAME: $(jq .rpm_name /home/jenkins/session_data.json)"
+# _rpmpkg="$(jq .rpm_name /home/jenkins/session_data.json | tr -d '\"')"
+_rpmpkg=$(cat /tmp/rpm_artifact.txt)
 if [ ! -z "${_rpmpkg}" ];
 then
 	if [ -e "${_rpmpkg}" ];
