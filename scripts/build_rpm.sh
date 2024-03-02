@@ -8,4 +8,4 @@ _dir="/home/jenkins/displaymsg-1.0"
 # rpmbuild -ba ${_dir}/displaymsg.spec | egrep 'Wrote:' | grep '/home/jenkins/rpmbuild/RPMS' | cut -d: -f2 | tr -d '[:space:]'
 
 ls -lsa
-rpmbuild --define "_topdir /home/jenkins/rpmbuild" -ba ${_dir}/displaymsg.spec #| egrep 'Wrote:' | grep '/home/jenkins/rpmbuild/RPMS' | cut -d: -f2 | tr -d '[:space:]'
+rpmbuild --define "_topdir /home/jenkins/rpmbuild"  --target $(uname -m) -ba ${_dir}/displaymsg.spec #| egrep 'Wrote:' | grep '/home/jenkins/rpmbuild/RPMS' | cut -d: -f2 | tr -d '[:space:]'
