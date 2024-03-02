@@ -4,12 +4,6 @@ node {
 	echo "JOB_NAME ${JOB_NAME}"
 
 	try {
-		stage('Prereqs') {
-			// To be added to shared libraries"
-			echo "==================[ PREQS ]=================="
-			sh "echo \"Logged in as user: $USER\""
-			sh "sudo ./scripts/install_prereqs.sh"
-		}
 
 		stage('Checkout') {
 			// To be added to shared libraries
@@ -18,6 +12,13 @@ node {
 			sh "pwd"
 			sh "sudo chmod -R 777 scripts"
 			sh "ls -lsaR scripts"
+		}
+		
+		stage('Prereqs') {
+			// To be added to shared libraries"
+			echo "==================[ PREQS ]=================="
+			sh "echo \"Logged in as user: $USER\""
+			sh "sudo ./scripts/install_prereqs.sh"
 		}
 
 		stage('Clean') {

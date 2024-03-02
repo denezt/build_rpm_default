@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -x
 
 _pkgname="/home/jenkins/rpmbuild/RPMS/x86_64/displaymsg-1.0-1.x86_64.rpm"
 
