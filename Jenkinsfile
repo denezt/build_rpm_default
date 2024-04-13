@@ -7,7 +7,7 @@ node {
 
 		stage('Checkout') {
 			// To be added to shared libraries
-			sh "sudo apt-get install git -y"
+			sh "sudo command -v git || sudo apt-get install git -y"
 			echo "==================[ CHECKOUT - SOURCE CODE ]=================="
 			checkout scm
 			sh "pwd"
