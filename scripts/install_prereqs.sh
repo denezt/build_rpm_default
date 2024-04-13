@@ -10,17 +10,23 @@ fi
 
 # Install Prereqs for scripts.
 red_hat(){
-  zypper in rpm-build || dnf in rpm-build
-  zypper in pwgen || dnf in pwgen
+	zypper in rpm-build || dnf in rpm-build
+	zypper in pwgen || dnf in pwgen
 }
 
 ubuntu(){
-  printf "Checking for required linked resources...\n"
-  printf "Done!\n"
-  apt-get -y install pwgen
-  apt-get -y install alien
-  apt-get -y install jq
-	apt-get -y install python3
+	printf "Checking for required linked resources...\n"
+	printf "Done!\n"
+	deps=( 'pwgen' 'alien' 'jq' 'python3' )
+	for dep in ${deps[@]}
+	do
+		if [ -z "$(command -v ${dep})" ];
+		then
+			apt-get -y install ${dep}
+		else
+			printf "Dependency: ${dep} is already installed\n"
+		fi
+  	done
 }
 
 help_menu(){
