@@ -41,20 +41,20 @@ node {
 		stage('Testing') {
 			echo "==================[ TESTING PACKAGE ]=================="
 			sh "pwd"
-			// sh "sudo ./scripts/test_rpm.sh"
+			sh "sudo ./scripts/test_rpm.sh"
 		}
 
-			if (!"${JOB_NAME}".endsWith("_check")) {
-				stage('Deploy') {
-					echo "==================[ DEPLOYING ]=================="
-					sh "pwd"
-					sh "sudo ./scripts/deploy_to_location.sh"
-				}
+		if (!"${JOB_NAME}".endsWith("_check")) {
+			stage('Deploy') {
+				echo "==================[ DEPLOYING ]=================="
+				sh "pwd"
+				sh "sudo ./scripts/deploy_to_location.sh"
 			}
-		} catch (e) {
-			currentBuild.result = "FAILED"
-			throw e
-		} finally {
-				echo 'Success'
 		}
+	} catch (e) {
+		currentBuild.result = "FAILED"
+		throw e
+	} finally {
+		echo 'Success'
+	}
 }
