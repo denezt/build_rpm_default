@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Set Job Description') {
+            steps {
+                script {
+                    def jobName = env.JOB_NAME
+                    def buildNumber = env.BUILD_NUMBER
+                    def description = "Build #${buildNumber} deployed successfully on ${new Date()}"
+
+                    // Update the build description
+                    currentBuild.description = description
+                }
+            }
+        }
+
+        stage('Other Steps') {
+            steps {
+                echo 'Continue with the rest of your pipeline...'
+            }
+        }
+    }
+}
